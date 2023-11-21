@@ -28,15 +28,6 @@ while True:
             else:
                 expenses.append([{day: {week: {month: {category: amount}}}}])
                 break
-
-
-        # if expenses[date_list[1]] in expenses:
-        #     print(1)
-            # expenses.pop(expenses.index(date_list[1]))
-            # expenses.append({date_list[1]: [week, date_list[0], {category: amount}]})
-        # else:
-        #     print(0)
-            # expenses.append({date_list[1]: [week, date_list[0], {category: amount}]})
     def viewExpenses():
         Day = input("please enter the day: ")
         Week = input("please enter the week: ")
