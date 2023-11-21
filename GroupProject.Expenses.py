@@ -1,4 +1,4 @@
-
+import math
 #expenses = {day: {week: {month: {category: amount}}}}
 expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 while True:
@@ -9,29 +9,50 @@ while True:
         date_list = date.split('.')
         day = int(date_list[0])
         month = int(date_list[1])
-        if int(date_list[0]) <= 7:
-            week = 1
-        elif int(date_list[0]) <= 14 and int(date_list[0]) >= 7:
-            week = 2
-        elif int(date_list[0]) <= 21 and int(date_list[0]) >= 14:
-            week = 3
-        elif int(date_list[0]) >= 21:
-            week = 4
+        week = math.ceil(day/7)
         category = input("Please enter the category of expenses: ")
         for i in range(len(expenses)):
             if day in expenses[i]:
-                print(i)
+                #print(i)
                 if category in expenses[i][day][week][month]:
+                    #print(1)
                     expenses[i][day][week][month][category] += amount
                 else:
                     expenses[i][day][week][month][category] = amount
             else:
-                expenses.append([{day: {week: {month: {category: amount}}}}])
+                #print(0)
                 break
     def viewExpenses():
-        Day = input("please enter the day: ")
-        Week = input("please enter the week: ")
-        Month = input("please enter the month: ")
+        while True:
+            total_amount = 0
+            pick = input("select the period of expenses: Day, Week, Month: ")
+            if pick == "Day":
+                Day = (input("please enter the day. DD.MM: "))
+                day_list = Day.split('.')
+                day = int(day_list[0])
+                month = int(day_list[1])
+                week = math.ceil(day / 7)
+                for i in range(len(expenses)):
+                    if day in expenses[i]:
+                        #print(i)
+                        if month in expenses[i][day][week]:
+                            total_amount = math.fsum(expenses[i][day][week][month].values())
+                            print(f"Total expenses: {total_amount}.")
+                            for j in expenses[i][day][week][month]:
+                                percentage = (expenses[i][day][week][month][j]/total_amount)*100
+                                print(f"{j}: {percentage}%")
+                            #print(f""expenses[i][day][week][month])
+                    else:
+                        break
+                break
+
+            elif pick == "Week":
+                Week = (input("please enter the week. WW.MM: "))
+                week_list = int(Week.split('.'))
+            elif pick == "Month":
+                Month = int(input("please enter the month. MM: "))
+            else:
+                print("Error, please try typing again")
 
 
     def statsExpenses():
