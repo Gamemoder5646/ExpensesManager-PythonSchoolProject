@@ -1,15 +1,14 @@
 
-amount = 0
-day = {}
-wek = {}
-#expenses = {"month": ["week", "day", {"category": "amount"}]}
-expenses = {11: [2, 9, {"b": 100}]}
+#expenses = {day: {week: {month: {category: amount}}}}
+expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 while True:
     command = input("Welcome to the expenses. Please type what would you like to do.\n Type 'Add' to add an expense.\n Type 'Period' to start viewing the expenses in a period.\n Type 'Statistics' to recieve the top 5 categories.\n : ")
     def addExpenses():
         amount = int(input("Please input the amount: "))
         date = input("Please enter the date. DD.MM format: ")
         date_list = date.split('.')
+        day = int(date_list[0])
+        month = int(date_list[1])
         if int(date_list[0]) <= 7:
             week = 1
         elif int(date_list[0]) <= 14 and int(date_list[0]) >= 7:
@@ -19,11 +18,17 @@ while True:
         elif int(date_list[0]) >= 21:
             week = 4
         category = input("Please enter the category of expenses: ")
-        cat = {category: amount}
-        day[int(date_list[0])] = cat
-        wek[week] = day
-        #month = {date_list[1], week}
-        expenses[int(date_list[1])] = wek
+        for i in range(len(expenses)):
+            if day in expenses[i]:
+                print(i)
+                if category in expenses[i][day][week][month]:
+                    expenses[i][day][week][month][category] += amount
+                else:
+                    expenses[i][day][week][month][category] = amount
+
+                #expenses.append([{day: {week: {month: {category: amount}}}}])
+
+
         # if expenses[date_list[1]] in expenses:
         #     print(1)
             # expenses.pop(expenses.index(date_list[1]))
@@ -38,7 +43,7 @@ while True:
 
 
     def statsExpenses():
-        print("empty, fuck you :P")
+        print("empty :P")
     def exportExpenses(): #optional!!!
         file = open("C:\Expenses\expenses.txt", 'w')
         file.write(str(expenses))
