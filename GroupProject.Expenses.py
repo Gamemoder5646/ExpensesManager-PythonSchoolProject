@@ -25,8 +25,9 @@ while True:
                     expenses[i][day][week][month][category] += amount
                 else:
                     expenses[i][day][week][month][category] = amount
-
-                #expenses.append([{day: {week: {month: {category: amount}}}}])
+            else:
+                expenses.append([{day: {week: {month: {category: amount}}}}])
+                break
 
 
         # if expenses[date_list[1]] in expenses:
