@@ -4,6 +4,7 @@ expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 while True:
     command = input("Welcome to the expenses. Please type what would you like to do.\n Type 'Add' to add an expense.\n Type 'Period' to start viewing the expenses in a period.\n Type 'Statistics' to recieve the top 5 categories.\n : ")
     def addExpenses():
+        lever = False
         amount = int(input("Please input the amount: "))
         date = input("Please enter the date. DD.MM format: ")
         date_list = date.split('.')
@@ -13,15 +14,19 @@ while True:
         category = input("Please enter the category of expenses: ")
         for i in range(len(expenses)):
             if day in expenses[i]:
+                lever = True
                 #print(i)
                 if category in expenses[i][day][week][month]:
                     #print(1)
                     expenses[i][day][week][month][category] += amount
                 else:
                     expenses[i][day][week][month][category] = amount
+            elif lever == False:
+                expenses.append({day: {week: {month: {category: amount}}}})
             else:
                 #print(0)
                 break
+
     def viewExpenses():
         while True:
             total_amount = 0
