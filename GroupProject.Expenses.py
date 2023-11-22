@@ -29,7 +29,6 @@ while True:
 
     def viewExpenses():
         while True:
-            total_amount = 0
             pick = input("select the period of expenses: Day, Week, Month: ")
             if pick == "Day":
                 Day = (input("please enter the day. DD.MM: "))
@@ -53,7 +52,26 @@ while True:
 
             elif pick == "Week":
                 Week = (input("please enter the week. WW.MM: "))
-                week_list = int(Week.split('.'))
+                week_list = Week.split('.')
+                week = int(week_list[0])
+                month = int(week_list[1])
+                for i in range(len(expenses)):
+                    print(f"list index: {i}")
+                    for j in expenses[i]:
+                        print(f"Day: {j}")
+                        if week in expenses[i][j]:
+                            print(f"Week: {True}")
+                            if month in expenses[i][j][week]:
+                                print(f"Month: {True}")
+                                for h in expenses[i][j][week][month].values():
+                                    print(f"amount: {h}")
+                            else:
+                                print(False)
+                                break
+                        else:
+                            print(False)
+                            break
+
             elif pick == "Month":
                 Month = int(input("please enter the month. MM: "))
             else:
