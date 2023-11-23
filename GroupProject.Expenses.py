@@ -4,7 +4,6 @@ expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 while True:
     command = input("Welcome to the expenses. Please type what would you like to do.\n Type 'Add' to add an expense.\n Type 'Period' to start viewing the expenses in a period.\n Type 'Statistics' to recieve the top 5 categories.\n : ")
     def addExpenses():
-        lever = False
         amount = int(input("Please input the amount: "))
         date = input("Please enter the date. DD.MM format: ")
         date_list = date.split('.')
@@ -18,8 +17,10 @@ while True:
                 if category in expenses[i][day][week][month]:
                     #print(1)
                     expenses[i][day][week][month][category] += amount
+                    print(f"Day {day} ")
                 else:
                     expenses[i][day][week][month][category] = amount
+                    break
             elif day not in expenses[i]:
                 expenses.append({day: {week: {month: {category: amount}}}})
                 break
@@ -46,6 +47,7 @@ while True:
                                 print(f"{j}: {percentage}%")
                             #print(f""expenses[i][day][week][month])
                     else:
+                        print(f"No such day of month found in records. (you typed {Day}) ")
                         break
                 break
             elif pick == "Week":
@@ -56,26 +58,28 @@ while True:
                 amount_dict = {}
                 total_amount = 0
                 for i in range(len(expenses)):
-                    print(f"list index: {i}")
+                    #print(f"list index: {i}")
                     for j in expenses[i]:
-                        print(f"Day: {j}")
+                        #print(f"Day: {j}")
                         if week in expenses[i][j]:
-                            print(f"Week: {True}")
+                            #print(f"Week: {True}")
                             if month in expenses[i][j][week]:
-                                print(f"Month: {True}")
+                                #print(f"Month: {True}")
                                 for h in expenses[i][j][week][month].keys():
-                                    print(h)
+                                    #print(h)
                                     if h in amount_dict.keys():
                                         amount_dict[h] += expenses[i][j][week][month][h]
                                     else:
                                         amount_dict[h] = expenses[i][j][week][month][h]
                             else:
-                                print(False)
+                                #print(False)
+                                print(f"No such month was found in records. (you typed {month}) ")
                                 break
                         else:
-                            print(False)
+                            #print(False)
+                            print(f"No such week was found in records. (you typed {week}) ")
                             break
-                print(amount_dict)
+                #print(amount_dict)
                 for g in amount_dict.values():
                     total_amount += g
                 print(f"Total expenses: {total_amount}")
@@ -86,7 +90,35 @@ while True:
                 #total_amount = math.fsum(amount_list)
                 #percentage =
             elif pick == "Month":
-                Month = int(input("please enter the month. MM: "))
+                amount_dict = {}
+                total_amount = 0
+                month = int(input("please enter the month. MM: "))
+                for i in range(len(expenses)):
+                    #print(f"list index: {i}")
+                    for j in expenses[i]:
+                        #print(f"day: {j}")
+                        for k in expenses[i][j]:
+                            #print(f"week: {k}")
+                            if month in expenses[i][j][k].keys():
+                                #print(f"Month: {True}")
+                                for h in expenses[i][j][k][month]:
+                                    #print(k)
+                                    if h in amount_dict.keys():
+                                        amount_dict[h] += expenses[i][j][k][month][h]
+                                    else:
+                                        amount_dict[h] = expenses[i][j][k][month][h]
+                            else:
+                                #print(False)
+                                break
+               # print(amount_dict)
+                for g in amount_dict.values():
+                    total_amount += g
+                print(f"Total expenses: {total_amount}")
+                for l in amount_dict.keys():
+                    percentage = (amount_dict[l] / total_amount) * 100
+                    print(f"{l}: {percentage}%")
+                break
+
             else:
                 print("Error, please try typing again")
     def statsExpenses():
