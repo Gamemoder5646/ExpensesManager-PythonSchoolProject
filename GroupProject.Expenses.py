@@ -24,7 +24,6 @@ while True:
                     Lever = True
                     print(f"1Added to the record.")
                     break
-            elif day not in expenses[i]:
             else:
                 break
         if Lever != True:
