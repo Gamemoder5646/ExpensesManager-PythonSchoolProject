@@ -1,6 +1,7 @@
 import math
 expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 
+
 def addExpenses():
     amount = int(input("Please input the amount: "))
     date = input("Please enter the date. DD.MM format: ")
@@ -27,9 +28,13 @@ def addExpenses():
     if Lever != True:
         expenses.append({day: {week: {month: {category: amount}}}})
         print(f"2Added to the record.")
+        
+        
 def viewExpenses():
     output = ""
     pick = input("select the period of expenses: Day, Week, Month\nWrite 'Exit' to select other operations: ")
+    
+    
     if pick.lower() == "day":
         Day = (input("please enter the day. DD.MM: "))
         day_list = Day.split('.')
@@ -50,6 +55,8 @@ def viewExpenses():
             else:
                 break
         print(f"Data exported in file.")
+        
+        
     elif pick.lower() == "week":
         Week = (input("please enter the week. WW.MM: "))
         week_list = Week.split('.')
@@ -80,6 +87,8 @@ def viewExpenses():
             output += f"{l}: {percentage}%"
         print(f"data added")
         return output
+    
+    
     elif pick.lower() == "month":
         amount_dict = {}
         total_amount = 0
@@ -102,6 +111,8 @@ def viewExpenses():
             percentage = (amount_dict[l] / total_amount) * 100
             output += f"{l}: {percentage}%"
         print(f"Data exported in file.")
+        
+        
     else:
         print("Error, please try again. ")
         return "Error"
@@ -137,7 +148,10 @@ def statsExpenses():
                 top = compare_list[k][1]
             else:
                 output += f"Place #{i+1} - "
+    #print(f"Balls<3.") # horny programmer!!!!!!!!
     return output
+
+
 def exportExpenses(e): #optional!!!
     file = open("C:\Expenses\expenses.txt", 'w')
     file.write(e)
