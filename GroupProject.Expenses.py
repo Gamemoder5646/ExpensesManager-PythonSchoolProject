@@ -1,7 +1,6 @@
 import math
 from func import addExpenses, exportExpenses, viewExpenses, statsExpenses
 #expenses = {day: {week: {month: {category: amount}}}}
-expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
 
 while True:
     command = input("Welcome to the expenses. Please type what would you like to do.\n Type 'Add' to add an expense.\n Type 'Period' to start viewing the expenses in a period.\n Type 'Statistics' to recieve the top 5 categories.\n : ")
