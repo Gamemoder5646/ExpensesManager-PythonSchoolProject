@@ -1,4 +1,6 @@
 import math
+expenses = [{8: {2: {11: {"b": 100}}}}, {9: {2: {11: {"b": 100}}}}]
+
 def addExpenses():
     amount = int(input("Please input the amount: "))
     date = input("Please enter the date. DD.MM format: ")
