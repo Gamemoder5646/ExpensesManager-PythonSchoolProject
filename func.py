@@ -30,7 +30,7 @@ def addExpenses():
 def viewExpenses():
     output = ""
     pick = input("select the period of expenses: Day, Week, Month\nWrite 'Exit' to select other operations: ")
-    if pick == "Day":
+    if pick.lower() == "day":
         Day = (input("please enter the day. DD.MM: "))
         day_list = Day.split('.')
         day = int(day_list[0])
@@ -50,7 +50,7 @@ def viewExpenses():
             else:
                 break
         print(f"Data exported in file.")
-    elif pick == "Week":
+    elif pick.lower() == "week":
         Week = (input("please enter the week. WW.MM: "))
         week_list = Week.split('.')
         week = int(week_list[0])
@@ -80,7 +80,7 @@ def viewExpenses():
             output += f"{l}: {percentage}%"
         print(f"data added")
         return output
-    elif pick == "Month":
+    elif pick.lower() == "month":
         amount_dict = {}
         total_amount = 0
         month = int(input("please enter the month. MM: "))
@@ -137,7 +137,6 @@ def statsExpenses():
                 top = compare_list[k][1]
             else:
                 output += f"Place #{i+1} - "
-    #print(f"Balls<3.") # horny programmer!!!!!!!!
     return output
 def exportExpenses(e): #optional!!!
     file = open("C:\Expenses\expenses.txt", 'w')
