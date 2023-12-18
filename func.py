@@ -136,3 +136,6 @@ def statsExpenses():
                 output += f"Place #{i+1} - "
     #print(f"Balls<3.") # horny programmer!!!!!!!!
     return output
+def exportExpenses(e): #optional!!!
+    file = open("C:\Expenses\expenses.txt", 'w')
+    file.write(e)
